@@ -1,8 +1,8 @@
-name: Node.js CD
+name: Build and Deploy
 
 on:
 #  release:
-#    types: [ created ]
+#    types: [ published ]
   push:
     branches: [ "countdown-numbers-6" ]
 
@@ -10,21 +10,19 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 16.x ]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run deploy --if-present -- --user "riddle-bot <andrew.riddlestone+bot@gmail.com>" --repo https://${{ secrets.GITHUB_TOKEN }}@github.com/ariddlestone/countdown-numbers.git
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
