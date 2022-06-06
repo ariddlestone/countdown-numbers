@@ -20,7 +20,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -u 'riddle-bot <andrew.riddlestone+bot@gmail.com>' -r git@github.com:ariddlestone/countdown-numbers.git"
   },
   "eslintConfig": {
     "extends": [
