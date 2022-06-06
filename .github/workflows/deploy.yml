@@ -27,4 +27,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run deploy --if-present -- --user "riddle-bot <andrew.riddlestone+bot@gmail.com>" --repo https://${{ secrets.GITHUB_TOKEN }}@github.com/ariddlestone/countdown-numbers.git --silent
+      - run: npm run deploy --if-present -- --user "riddle-bot <andrew.riddlestone+bot@gmail.com>" --repo https://${{ secrets.GITHUB_TOKEN }}@github.com/ariddlestone/countdown-numbers.git
