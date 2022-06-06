@@ -1,7 +1,7 @@
 /**
  * @param {number[]} numbers
  */
-export default function (numbers = []) {
+function NumberBucket (numbers = []) {
 
     /**
      * @type {{}}
@@ -77,4 +77,6 @@ export default function (numbers = []) {
     }
 
     this.add(numbers);
-};
+}
+
+export default NumberBucket;
