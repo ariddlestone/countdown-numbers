@@ -6,6 +6,9 @@ on:
   push:
     branches: [ "countdown-numbers-6" ]
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
 
