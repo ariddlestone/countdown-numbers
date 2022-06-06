@@ -4,13 +4,8 @@ import SolutionGenerator from "./SolutionGenerator";
 
 function App() {
 
-    const STATE_EMPTY = 0;
-    const STATE_CALCULATING = 1;
-    const STATE_SHOW_ANSWERS = 2;
-
     const [inputs, setInputs] = useState([null, null, null, null, null, null]);
     const [target, setTarget] = useState(null);
-    const [status, setStatus] = useState(STATE_EMPTY);
     const [solution, setSolution] = useState('');
 
     const updateInput = function (event) {
@@ -26,15 +21,12 @@ function App() {
     }
 
     const go = function () {
-        setStatus(STATE_CALCULATING);
         const solutionGenerator = new SolutionGenerator();
         const solution = solutionGenerator.generate(inputs, target);
         if (solution) {
             setSolution(solution.toString() + " = " + solution.getValue());
-            setStatus(STATE_SHOW_ANSWERS);
         } else {
             setSolution('');
-            setStatus(STATE_EMPTY);
         }
     }
 
