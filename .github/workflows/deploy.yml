@@ -3,8 +3,7 @@ name: Build and Deploy
 on:
 #  release:
 #    types: [ published ]
-  push:
-    branches: [ "countdown-numbers-6" ]
+  - push
 
 permissions:
   contents: write
