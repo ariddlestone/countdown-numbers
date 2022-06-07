@@ -56,3 +56,12 @@ test('complex toString with brackets', () => {
     );
     expect(operation.toString()).toEqual('(2+4)x(6-8)');
 });
+
+test('ariddlestone/countdown-numbers#10', () => {
+    const operation = new Operation(
+        new Subtraction(),
+        new Operation(new Subtraction(), 8, 4),
+        new Operation(new Subtraction(), 4, 2)
+    );
+    expect(operation.toString()).toEqual('8-4-(4-2)');
+});
