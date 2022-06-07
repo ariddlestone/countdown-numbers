@@ -16,7 +16,7 @@ export default function Operation(operator, operand1, operand2) {
         );
     }
 
-    this.getInputsUsed = function() {
+    this.getInputsUsed = function () {
         const inputs = [];
         if (this.operand1 instanceof Operation) {
             inputs.push.apply(inputs, this.operand1.getInputsUsed());
@@ -31,7 +31,7 @@ export default function Operation(operator, operand1, operand2) {
         return inputs;
     }
 
-    this.toString = function() {
+    this.toString = function () {
         let op1 = this.operand1 instanceof Operation
             ? this.operand1.toString()
             : this.operand1;
@@ -46,14 +46,20 @@ export default function Operation(operator, operand1, operand2) {
             : this.operand2;
         if (
             this.operand2 instanceof Operation
-            && this.operand2.operator.getOrder() > this.operator.getOrder()
+            && (
+                this.operand2.operator.getOrder() > this.operator.getOrder()
+                || (
+                    this.operand2.operator.getOrder() === this.operator.getOrder()
+                    && !this.operator.isAssociative()
+                )
+            )
         ) {
             op2 = `(${op2})`;
         }
         return `${op1}${this.operator.getSymbol()}${op2}`;
     }
 
-    this.toRPN = function() {
+    this.toRPN = function () {
         return [
             this.operand1 instanceof Operation
                 ? this.operand1.toRPN()
